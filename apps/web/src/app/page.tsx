@@ -1,7 +1,9 @@
 export default function Page(): JSX.Element {
   return (
     <div>
-      hwllow
+      <div >
+        <h1>Welcome to Chadt</h1>
+      </div>
     </div>
   );
 }
