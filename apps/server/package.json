@@ -6,7 +6,7 @@
   "scripts": {
     "build": "bun bun.build.ts",
     "start": "node dist/index.js",
-    "dev": "bun run index.ts"
+    "dev": "bun run src/index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
