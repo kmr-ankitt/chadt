@@ -10,7 +10,8 @@
 | **Message Queue**     | RabbitMQ (`amqplib`)                        |
 | **Streaming**         | Apache Kafka (`kafkajs`)                    |
 | **File Uploads**      | AWS S3 (`@aws-sdk/client-s3`)               |
-| **DB (optional)**     | NeonDB (for storing messages)               |
+| **DB**                | NeonDB (for storing messages)               |
+| **ORM**               | Prisma                                      |
 
 ## Flow
 
