@@ -1,12 +1,12 @@
 {
   "name": "server",
-  "module": "index.ts",
+  "module": "server.ts",
   "type": "module",
   "private": true,
   "scripts": {
     "build": "bun bun.build.ts",
-    "start": "node dist/index.js",
-    "dev": "bun run src/index.ts"
+    "start": "node dist/server.js",
+    "dev": "bun run --watch src/server.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
@@ -15,6 +15,12 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "prisma": "^6.9.0"
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/socket.io": "^3.0.2",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "prisma": "^6.9.0",
+    "socket.io": "^4.8.1"
   }
 }
