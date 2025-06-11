@@ -10,7 +10,7 @@ export function setupSocket(server: HttpServer) {
     }
   });
 
-  // authMiddleware(io);
+  authMiddleware(io);
 
   io.on("connection", (socket) => {
     console.log("An user connected");
