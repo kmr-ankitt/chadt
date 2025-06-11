@@ -1,9 +1,11 @@
 import { app, PORT } from "./express"
-import { server } from "./socket"
+import { createServer } from 'http';
+import { setupSocket } from "./socket";
 
-app.get('/', (req, res) => {
-  res.send('Hello, chadts!')
-})
+const server = createServer(app);
+
+// Setup socket.io with the created HTTP server
+setupSocket(server);
 
 server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`)
