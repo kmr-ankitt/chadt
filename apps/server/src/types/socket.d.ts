@@ -5,6 +5,8 @@ declare module "socket.io" {
   interface Socket {
     user?: {
       userId: string;
+      userName: string;
+      userProfilePicture: string;
       sessionId: string;
     };
   }
