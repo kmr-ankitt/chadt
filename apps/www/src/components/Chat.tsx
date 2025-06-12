@@ -7,21 +7,14 @@ import { Input } from "@/components/ui/input";
 import { useAuth, useUser } from "@clerk/nextjs";
 import ChatArea from "./ChatArea";
 import Image from "next/image";
+import { MessageType } from "@/type/messageType";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:4000";
 let socket: Socket | null = null;
 
 export default function Chat() {
   const [msg, setMsg] = useState("");
-  const [messages, setMessages] = useState<
-    {
-      sender: string;
-      senderName: string;
-      senderProfilePicture: string;
-      message: string;
-      timestamp: string
-    }[]
-  >([]);
+  const [messages, setMessages] = useState<MessageType[]>([]);
 
   const { getToken } = useAuth();
   const { user } = useUser();
@@ -74,16 +67,7 @@ export default function Chat() {
 
   return (
     <>
-      <ChatArea />
-      <div className="mb-4 space-y-2 max-h-64 overflow-y-auto border rounded p-3">
-        {messages.map((m, i) => (
-          <div key={i} className="flex items-center justify-between text-sm border-b pb-1">
-            <img src={m.senderProfilePicture} alt={m.sender} className="w-6 h-6 rounded-full mr-2" />
-            <b>{m.senderName}</b>: {m.message}
-          </div>
-        ))}
-      </div>
-
+      <ChatArea messages={messages} />
       <form onSubmit={onSubmit} className="flex gap-3">
         <Input
           type="text"
