@@ -11,9 +11,6 @@
   "devDependencies": {
     "@types/bun": "latest"
   },
-  "peerDependencies": {
-    "typescript": "^5.8.3"
-  },
   "dependencies": {
     "@clerk/backend": "^2.0.0",
     "@types/cors": "^2.8.19",
