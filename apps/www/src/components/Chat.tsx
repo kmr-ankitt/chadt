@@ -33,7 +33,6 @@ export default function Chat() {
       });
 
       socket.on("message", (data) => {
-        console.log("New message received:", data);
         setMessages((prev) => [...prev, data]);
       });
 
@@ -66,9 +65,12 @@ export default function Chat() {
   console.log(messages)
 
   return (
-    <>
+    <div className="flex flex-col h-full w-full max-w-2xl border-x bg-white">
       <ChatArea messages={messages} />
-      <form onSubmit={onSubmit} className="flex gap-3">
+      <form
+        onSubmit={onSubmit}
+        className="flex gap-3 p-4 border-t"
+      >
         <Input
           type="text"
           placeholder="Type your message"
@@ -77,6 +79,6 @@ export default function Chat() {
         />
         <Button type="submit">Send</Button>
       </form>
-    </>
+    </div>
   );
 }
