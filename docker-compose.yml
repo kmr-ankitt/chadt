@@ -1,4 +1,10 @@
 services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
   server:
     build:
       context: .
@@ -10,6 +16,8 @@ services:
     volumes:
       - .:/app
     working_dir: /app/apps/server
+    depends_on:
+      - redis
     command: bun dev
 
   www:
@@ -24,3 +32,6 @@ services:
       - .:/app
     working_dir: /app/apps/www
     command: bun dev
+
+volumes:
+  redis-data:
