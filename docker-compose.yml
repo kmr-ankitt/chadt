@@ -1,4 +1,13 @@
 services:
+  rabbitmq:
+    image: rabbitmq:4-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+
   server:
     build:
       context: .
@@ -7,9 +16,13 @@ services:
       - "4000:4000"
     environment:
       - NODE_ENV=development
+      - RABBITMQ_URL=amqp://user:password@rabbitmq:5672
     volumes:
       - .:/app
     working_dir: /app/apps/server
+    depends_on:
+      - rabbitmq
+    entrypoint: ["/app/wait-for-rabbit.sh"]
     command: bun dev
 
   www:
