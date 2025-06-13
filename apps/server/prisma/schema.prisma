@@ -4,9 +4,26 @@
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+model User {
+  userId  String    @id @unique
+  name    String
+  pfp     String
+  Message Message[]
+}
+
+model Message {
+  messageId Int      @id @default(autoincrement())
+  message   String
+  timestamp DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [userId])
 }
